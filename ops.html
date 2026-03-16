@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walter 2.0 — Operational Guide</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ops.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg class="brand-logo" viewBox="0 0 48 40" width="36" height="30">
+        <polyline points="2,4 14,36 24,14 34,36 46,4" fill="none" stroke="#C8962A" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">Walter <span class="brand-ver">2.0</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#signal" class="nav-a">Signal</a></li>
+      <li><a href="index.html#variants" class="nav-a">Variants</a></li>
+      <li><a href="index.html#performance" class="nav-a">Performance</a></li>
+      <li><a href="index.html#grading" class="nav-a">Grading</a></li>
+      <li><a href="index.html#schedule" class="nav-a">Schedule</a></li>
+      <li><a href="index.html#log" class="nav-a">Signal Log</a></li>
+      <li><a href="ops.html" class="nav-a active">Ops Guide</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- OPS HERO -->
+<div class="ops-hero">
+  <div class="container">
+    <div class="ops-hero-inner">
+      <div class="ops-badge">Operational Guide</div>
+      <h1 class="ops-title">Walter 2.0 <span class="gold">Signal Management</span></h1>
+      <p class="ops-sub">Complete grade-by-grade protocols · Pre-trade checklists · Risk controls · Performance tracking. Every rule calibrated to 976 backtested trades.</p>
+      <div class="ops-toc">
+        <a href="#s1" class="toc-link">1. Pre-Trade</a>
+        <a href="#s2" class="toc-link">2. Grading System</a>
+        <a href="#s3" class="toc-link">3. Grade Protocols</a>
+        <a href="#s4" class="toc-link">4. Trade Management</a>
+        <a href="#s5" class="toc-link">5. Risk Controls</a>
+        <a href="#s6" class="toc-link">6. Performance</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ops-body">
+<div class="ops-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="ops-sidebar" id="opsSidebar">
+    <div class="sidebar-title">Sections</div>
+    <nav class="sidebar-nav">
+      <a href="#s1" class="snav-a" data-sec="s1">1. Pre-Trade Preparation</a>
+      <a href="#s1-1" class="snav-sub">1.1 Daily Opening Sequence</a>
+      <a href="#s1-2" class="snav-sub">1.2 Per-Signal Pre-Qualification</a>
+      <a href="#s2" class="snav-a" data-sec="s2">2. EV-Based Grading System</a>
+      <a href="#s2-1" class="snav-sub">2.1 Scoring Dimensions</a>
+      <a href="#s2-2" class="snav-sub">2.2 Grade Thresholds</a>
+      <a href="#s3" class="snav-a" data-sec="s3">3. Grade-by-Grade Protocols</a>
+      <a href="#s3-g5" class="snav-sub">Grade 5 — Maximum Conviction</a>
+      <a href="#s3-g4" class="snav-sub">Grade 4 — High Conviction</a>
+      <a href="#s3-g3" class="snav-sub">Grade 3 — Standard Signal</a>
+      <a href="#s3-g2" class="snav-sub">Grade 2 — Reduced</a>
+      <a href="#s3-g1" class="snav-sub">Grade 1 — Minimum Viable</a>
+      <a href="#s4" class="snav-a" data-sec="s4">4. Active Trade Management</a>
+      <a href="#s4-1" class="snav-sub">4.1 The 2R Partial Exit</a>
+      <a href="#s4-2" class="snav-sub">4.2 Grid Management</a>
+      <a href="#s4-3" class="snav-sub">4.3 Stop Rules</a>
+      <a href="#s4-4" class="snav-sub">4.4 Timeout Management</a>
+      <a href="#s5" class="snav-a" data-sec="s5">5. Risk Controls</a>
+      <a href="#s5-1" class="snav-sub">5.1 Per-Trade Limits</a>
+      <a href="#s5-2" class="snav-sub">5.2 Drawdown Protocols</a>
+      <a href="#s6" class="snav-a" data-sec="s6">6. Performance Tracking</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ops-main">
+
+    <!-- S1 -->
+    <section id="s1" class="ops-section">
+      <div class="ops-section-label">Section 1</div>
+      <h2 class="ops-h2">Pre-Trade Preparation</h2>
+      <p class="ops-p">Every Walter 2.0 trading day begins with the same structured preparation. Skipping steps creates inconsistency in signal quality and trade execution. Complete each item in order.</p>
+
+      <div id="s1-1" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">1.1 Daily Opening Sequence</h3>
+      <div class="ops-table-wrap">
+        <table class="ops-table">
+          <thead><tr><th>#</th><th>Task</th><th>Method</th><th>Why It Matters</th></tr></thead>
+          <tbody>
+            <tr><td class="step-num">1</td><td class="bold-cell">Check session time (UTC)</td><td>System clock</td><td>W3 London entries are HARD-GATED to 07:00–16:00 UTC. Outside this window, the signal is invalid regardless of all other conditions.</td></tr>
+            <tr><td class="step-num">2</td><td class="bold-cell">Verify current month</td><td>Calendar</td><td>Month score is part of the grade. January (EV +119p) and October (EV +93p) justify increased position size. April (EV +25p) requires reduction.</td></tr>
+            <tr><td class="step-num">3</td><td class="bold-cell">Check day of week</td><td>Calendar</td><td>Friday W3 London WR drops to 68.6% vs Monday 85.9%. Reduce W3 London size to 75% on Fridays only.</td></tr>
+            <tr><td class="step-num">4</td><td class="bold-cell">Review open positions</td><td>Signal log</td><td>Maximum 4 concurrent Walter trades. Do not open new positions when at or near this limit.</td></tr>
+            <tr><td class="step-num">5</td><td class="bold-cell">Note next EV window</td><td>Schedule</td><td>07:00–09:00 UTC is the primary window (W3 09:00 EV=+101p, W2 07:00 EV=+91p). Be present and scanning during this period.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="s1-2" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">1.2 Per-Signal Pre-Qualification</h3>
+      <p class="ops-p">Before calculating the grade on any signal, run this quick gate. A signal that fails any check is discarded — not graded.</p>
+      <div class="checklist">
+        <div class="check-item check-critical">
+          <span class="check-icon">⚡</span>
+          <div>
+            <strong>All 6 entry conditions met simultaneously?</strong>
+            <span>RSI spike, RSI flip on directional bar, H4 EMA alignment, 4-week weekly bias, Fibonacci golden pocket (38.2–61.8%), EMA proximity (within 22 pips), ADX ≥ 20. Partial signals do not exist.</span>
+          </div>
+        </div>
+        <div class="check-item check-critical">
+          <span class="check-icon">🕐</span>
+          <div>
+            <strong>Session gate satisfied?</strong>
+            <span>W3 London: entry must be 07:00–16:00 UTC. W1/W2/W4: 06:00–21:00 UTC. If outside these windows, discard.</span>
+          </div>
+        </div>
+        <div class="check-item check-warn">
+          <span class="check-icon">⚠</span>
+          <div>
+            <strong>Is this GBP/JPY Short?</strong>
+            <span>Negative EV (−4.2 pips average). Allowed only if total score ≥ 8 after the −1 pair direction penalty. Structural negative EV means this requires explicit justification.</span>
+          </div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <div>
+            <strong>Capital available?</strong>
+            <span>Sufficient margin for the required position size at this grade. Confirm before entry, not after.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section id="s2" class="ops-section">
+      <div class="ops-section-label">Section 2</div>
+      <h2 class="ops-h2">EV-Based Grading System</h2>
+      <p class="ops-p">Every signal is scored on five dimensions calibrated to Expected Value (EV = WR × avg_win + (1−WR) × avg_loss), not win rate alone. Grid L3 has higher EV (+108 pips) than L1 (+34 pips) despite lower WR — a WR-only system would systematically underweight the best entries.</p>
+
+      <div id="s2-1" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">2.1 Scoring Dimensions</h3>
+      <div class="dim-grid">
+        <div class="dim-card">
+          <div class="dim-num">1</div>
+          <div class="dim-body">
+            <div class="dim-name">Variant</div>
+            <div class="dim-range">1–4 pts</div>
+            <div class="dim-detail">W4 Trinity=<span class="gold">4</span> · W2 Shogun=<span class="gold">3</span> · W3 London=<span class="gold">2</span> · W1 Cascade=<span class="gold">1</span></div>
+            <div class="dim-ev">EV: W4=+105p · W2=+87p · W3=+52p · W1=+8p</div>
+          </div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-num">2</div>
+          <div class="dim-body">
+            <div class="dim-name">Pair × Direction</div>
+            <div class="dim-range">−1–5 pts</div>
+            <div class="dim-detail">GBPJPY-L=<span class="gold">5</span> · EURJPY-L/GBPUSD-L=<span class="gold">4</span> · USDJPY-L/AUDUSD-L=<span class="gold">3</span> · EURJPY-S/USDJPY-S=<span class="gold">2</span> · EURUSD-L/GBPUSD-S/EURUSD-S=<span class="gold">1</span> · <span class="red">GBPJPY-S=−1</span></div>
+            <div class="dim-ev">GBPJPY-L EV=+172p · EURJPY-L EV=+127p · <span class="red">GBPJPY-S EV=−4.2p (negative)</span></div>
+          </div>
+        </div>
+        <div class="dim-card dim-highlight">
+          <div class="dim-num">3</div>
+          <div class="dim-body">
+            <div class="dim-name">Grid Level</div>
+            <div class="dim-range">2–4 pts</div>
+            <div class="dim-detail">L2=<span class="gold">4</span> (best EV×Kelly) · L3=<span class="gold">3</span> (highest raw EV) · L1=<span class="gold">2</span> (highest certainty)</div>
+            <div class="dim-ev">EV: L3=+108p · L2=+92p · L1=+34p · L2+L3 reward adversity correctly</div>
+          </div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-num">4</div>
+          <div class="dim-body">
+            <div class="dim-name">Entry Hour (UTC)</div>
+            <div class="dim-range">1–4 pts</div>
+            <div class="dim-detail">08/09/15/18/20:00=<span class="gold">4</span> · 06/12/16:00=<span class="gold">3</span> · 07/10/13/17:00=<span class="gold">2</span> · Others=<span class="gold">1</span></div>
+            <div class="dim-ev">09:00=+101p · 20:00=+97p · 08:00=+91p · 15:00=+90p · 18:00=+87p</div>
+          </div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-num">5</div>
+          <div class="dim-body">
+            <div class="dim-name">Month</div>
+            <div class="dim-range">1–4 pts</div>
+            <div class="dim-detail">Jan/Oct=<span class="gold">4</span> · Jun/Jul/Aug=<span class="gold">3</span> · Sep/Dec/Feb/Nov=<span class="gold">2</span> · Mar/May/Apr=<span class="gold">1</span></div>
+            <div class="dim-ev">Jan=+119p · Oct=+93p · Jun=+84p · Aug=+82p · Apr=+25p (weakest)</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="s2-2" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">2.2 Grade Thresholds</h3>
+      <div class="grade-threshold-table">
+        <div class="gtt-row gtt-g5">
+          <div class="gtt-grade">★★★★★<br><span>GRADE 5</span></div>
+          <div class="gtt-score">Score 17–21</div>
+          <div class="gtt-stats"><span>WR 97–100%</span><span>EV +145–172p</span><span>94 trades</span></div>
+          <div class="gtt-size">100–125% of standard lot</div>
+          <div class="gtt-desc">All five dimensions converge at peak values. Take every Grade 5 signal without hesitation. These are the most profitable trades in the dataset.</div>
+        </div>
+        <div class="gtt-row gtt-g4">
+          <div class="gtt-grade">★★★★☆<br><span>GRADE 4</span></div>
+          <div class="gtt-score">Score 13–16</div>
+          <div class="gtt-stats"><span>WR 88–96%</span><span>EV +90–140p</span><span>457 trades</span></div>
+          <div class="gtt-size">100% of standard lot</div>
+          <div class="gtt-desc">Primary trading zone. Most W4 Trinity and best W2 Shogun signals land here. Full deployment.</div>
+        </div>
+        <div class="gtt-row gtt-g3">
+          <div class="gtt-grade">★★★☆☆<br><span>GRADE 3</span></div>
+          <div class="gtt-score">Score 8–12</div>
+          <div class="gtt-stats"><span>WR 70–87%</span><span>EV +45–89p</span><span>388 trades</span></div>
+          <div class="gtt-size">100% of standard lot</div>
+          <div class="gtt-desc">Core of daily trading volume. Standard execution. Most frequent grade.</div>
+        </div>
+        <div class="gtt-row gtt-g2">
+          <div class="gtt-grade">★★☆☆☆<br><span>GRADE 2</span></div>
+          <div class="gtt-score">Score 3–7</div>
+          <div class="gtt-stats"><span>WR 55–69%</span><span>EV +5–44p</span><span>37 trades</span></div>
+          <div class="gtt-size">50% of standard lot — max</div>
+          <div class="gtt-desc">Requires justification. Only take when no Grade 3+ exists on any pair. Run L1 only — no grid adds at Grade 2.</div>
+        </div>
+        <div class="gtt-row gtt-g1">
+          <div class="gtt-grade">★☆☆☆☆<br><span>GRADE 1</span></div>
+          <div class="gtt-score">Score 0–2</div>
+          <div class="gtt-stats"><span>WR 45–54%</span><span>EV +1–4p</span><span>Floor</span></div>
+          <div class="gtt-size">25% of standard lot — max</div>
+          <div class="gtt-desc">Near-breakeven EV. Do not seek proactively. Only if idle capital cannot be deployed elsewhere and all 6 conditions are cleanly met.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section id="s3" class="ops-section">
+      <div class="ops-section-label">Section 3</div>
+      <h2 class="ops-h2">Grade-by-Grade Signal Protocols</h2>
+
+      <div id="s3-g5" class="ops-sub-anchor"></div>
+      <div class="protocol-card prot-g5">
+        <div class="prot-header">
+          <div class="prot-stars">★★★★★</div>
+          <div class="prot-label">GRADE 5 — Maximum Conviction</div>
+        </div>
+        <div class="prot-grid">
+          <div class="prot-row"><span class="prot-key">Typical Setup</span><span class="prot-val">W4/W2 + GBP/JPY or EUR/JPY Long + L2/L3 grid + 08:00/09:00/15:00 UTC + January or October. The five dimensions all at their highest value simultaneously.</span></div>
+          <div class="prot-row"><span class="prot-key">Position Size</span><span class="prot-val gold bold">100–125% of standard lot. Justify the 25% premium: Grade 5 has 97–100% historical WR across 94 trades. Maximum capital deployment is correct here.</span></div>
+          <div class="prot-row"><span class="prot-key">Entry</span><span class="prot-val">Enter at market on the signal bar close. No delay, no confirmation wait. Grade 5 urgency = highest. Any hesitation here is operationally incorrect.</span></div>
+          <div class="prot-row"><span class="prot-key">Stops</span><span class="prot-val">Place hard stop immediately after fill. W4: −85p from L1. W2: −90p. W3: −70p. W1: −80p. Set as a GTC order. Do not move adversely before the 2R partial fires.</span></div>
+          <div class="prot-row"><span class="prot-key">Take Profit</span><span class="prot-val">Set TP limit order immediately. L1 only: flat pip target (W4: +45p, W2: +45p, W3: +38p, W1: +40p). L2/L3 active: blended average ± 2.5R from blend to stop.</span></div>
+          <div class="prot-row prot-highlight"><span class="prot-key">2R Partial</span><span class="prot-val gold bold">MANDATORY. When price reaches the 2R level: sell exactly 50%, move stop to entry price. This converts the trade to a guaranteed winner. Never skip — this is the single most important execution action.</span></div>
+          <div class="prot-row"><span class="prot-key">Post-Partial</span><span class="prot-val">Remaining 50% is risk-free. Hold to full TP or 96-bar timeout. Do not close early because gains look sufficient. Let the system work.</span></div>
+          <div class="prot-row"><span class="prot-key">Exit Priority</span><span class="prot-val">1. TP hit → close remaining. 2. Stop hit (post-partial: breakeven close). 3. 96-bar timeout → market close. No discretionary exits at Grade 5.</span></div>
+          <div class="prot-row prot-note"><span class="prot-key">Performance Note</span><span class="prot-val">Missing Grade 5 signals is the single most costly operational error. These signals appear 6–8 times per month. Capture rate should be ≥95%.</span></div>
+        </div>
+      </div>
+
+      <div id="s3-g4" class="ops-sub-anchor"></div>
+      <div class="protocol-card prot-g4">
+        <div class="prot-header">
+          <div class="prot-stars">★★★★☆</div>
+          <div class="prot-label">GRADE 4 — High Conviction</div>
+        </div>
+        <div class="prot-grid">
+          <div class="prot-row"><span class="prot-key">Position Size</span><span class="prot-val green bold">100% of standard lot. Full deployment. Grade 4 is the primary trading zone — 457 trades at 88–96% WR. This is the backbone of the strategy's P&L.</span></div>
+          <div class="prot-row"><span class="prot-key">Entry</span><span class="prot-val">Enter at market on signal bar close. Same promptness as Grade 5. Grade 4 does not wait for further confirmation.</span></div>
+          <div class="prot-row"><span class="prot-key">Stops and TP</span><span class="prot-val">Identical mechanical rules to Grade 5. Hard stop at defined distance. TP limit order set immediately. Grade does not change these parameters — only position size.</span></div>
+          <div class="prot-row prot-highlight"><span class="prot-key">2R Partial</span><span class="prot-val green bold">Mandatory. Execute on all Grade 4 signals without exception. The 2R partial is system-level, not grade-dependent.</span></div>
+          <div class="prot-row"><span class="prot-key">Grid Management</span><span class="prot-val">If L2 triggers, the EV of the combined position improves. This is the grid working. Do not panic-close when L2 fills — the blended entry is better and the stop has not moved.</span></div>
+          <div class="prot-row"><span class="prot-key">Exit Priority</span><span class="prot-val">1. TP. 2. Stop. 3. 96-bar timeout. Identical to Grade 5.</span></div>
+        </div>
+      </div>
+
+      <div id="s3-g3" class="ops-sub-anchor"></div>
+      <div class="protocol-card prot-g3">
+        <div class="prot-header">
+          <div class="prot-stars">★★★☆☆</div>
+          <div class="prot-label">GRADE 3 — Standard Signal</div>
+        </div>
+        <div class="prot-grid">
+          <div class="prot-row"><span class="prot-key">Position Size</span><span class="prot-val">100% of standard lot. No special treatment.</span></div>
+          <div class="prot-row"><span class="prot-key">Additional Check</span><span class="prot-val">Before entering Grade 3, verify: (a) Is a Grade 4–5 available on another pair? (b) Is concurrent position count near 4? (c) Is this W3 London approaching the 16:00 UTC close?</span></div>
+          <div class="prot-row"><span class="prot-key">Weak Month Adjustment</span><span class="prot-val">If the current month scores 1pt (Mar/May/Apr), consider reducing to 75% size. The EV differential between seasons is significant — April (+25p EV) vs January (+119p EV) is a 5× gap.</span></div>
+          <div class="prot-row prot-highlight"><span class="prot-key">2R Partial</span><span class="prot-val">Mandatory on all Grade 3 signals.</span></div>
+          <div class="prot-row"><span class="prot-key">Exit Priority</span><span class="prot-val">1. TP. 2. Stop. 3. Timeout. A discretionary close is acceptable on Grade 3 signals in weak months if price is near entry after 24+ hours with no momentum.</span></div>
+        </div>
+      </div>
+
+      <div id="s3-g2" class="ops-sub-anchor"></div>
+      <div class="protocol-card prot-g2">
+        <div class="prot-header">
+          <div class="prot-stars">★★☆☆☆</div>
+          <div class="prot-label">GRADE 2 — Reduced Conviction</div>
+        </div>
+        <div class="prot-grid">
+          <div class="prot-row prot-highlight"><span class="prot-key">Decision Gate</span><span class="prot-val amber bold">Do not take automatically. Required checks: (1) No Grade 3+ on any other pair? (2) Is this GBP/JPY Short with negative EV? (3) Is the account near max concurrent positions?</span></div>
+          <div class="prot-row"><span class="prot-key">When to Take</span><span class="prot-val">Only if: no Grade 3+ exists, all 6 conditions are met, sector is not scoring 0 points, and the pair is not GBP/JPY Short (unless score ≥8 after penalty).</span></div>
+          <div class="prot-row"><span class="prot-key">Position Size</span><span class="prot-val amber bold">50% of standard lot. Hard ceiling. No exceptions.</span></div>
+          <div class="prot-row"><span class="prot-key">Grid Rule</span><span class="prot-val">L1 entry only. Do not set L2/L3 add orders. At Grade 2, an adverse move that would trigger L2 is more likely to continue through to the stop.</span></div>
+          <div class="prot-row"><span class="prot-key">TP Adjustment</span><span class="prot-val">Reduce TP to 60–70% of the standard flat pip target. Capture smaller, more certain gains rather than holding for full 2.5R on a below-average signal.</span></div>
+          <div class="prot-row"><span class="prot-key">Timeout</span><span class="prot-val">60-bar timeout (30 hours) for Grade 2 vs 96 bars for Grade 3–5. Do not hold Grade 2 through extended stagnation.</span></div>
+        </div>
+      </div>
+
+      <div id="s3-g1" class="ops-sub-anchor"></div>
+      <div class="protocol-card prot-g1">
+        <div class="prot-header">
+          <div class="prot-stars">★☆☆☆☆</div>
+          <div class="prot-label">GRADE 1 — Minimum Viable</div>
+        </div>
+        <div class="prot-grid">
+          <div class="prot-row prot-highlight"><span class="prot-key">Default</span><span class="prot-val red bold">Pass. Grade 1 is not an active trading target. If you are calculating a Grade 1 signal, ask why — is this a W1 Cascade outside session hours? GBP/JPY Short at L3? The root cause likely indicates a scan methodology issue.</span></div>
+          <div class="prot-row"><span class="prot-key">If Taken</span><span class="prot-val">25% standard lot. L1 only. No grid. TP at 50% of standard target. 48-bar timeout (24 hours). Hard stop in place.</span></div>
+          <div class="prot-row"><span class="prot-key">Review Action</span><span class="prot-val">After any Grade 1 trade, document the reason it was below Grade 2. Repeated Grade 1 signals may indicate scanning at sub-optimal windows or incorrect session identification.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section id="s4" class="ops-section">
+      <div class="ops-section-label">Section 4</div>
+      <h2 class="ops-h2">Active Trade Management</h2>
+
+      <div id="s4-1" class="ops-sub-anchor"></div>
+      <div class="callout callout-gold">
+        <div class="callout-title">⚡ The 2R Partial Exit — Non-Negotiable</div>
+        <p>When price reaches Entry + 2 × (Entry − Stop): sell exactly 50% of the position and move the stop on the remaining 50% to the entry price (breakeven).</p>
+        <p style="margin-top:8px">This single action converts a "possible winner" into a guaranteed winner. The first 50% locks in 2R profit. The remaining 50% has zero downside — it can only produce breakeven or better.</p>
+        <p style="margin-top:8px"><strong>Missed 2R partials are the most common cause of underperformance vs backtest.</strong> After executing, update the Live Grade column to "→★5 (2R hit [date/time])". Target: 100% execution rate.</p>
+      </div>
+
+      <div id="s4-2" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">4.2 Grid Level Management</h3>
+      <div class="ops-table-wrap">
+        <table class="ops-table">
+          <thead><tr><th>Level</th><th>When It Fills</th><th>Immediate Actions</th><th>What Changed</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="bold-cell green">L1</td>
+              <td>At entry</td>
+              <td>Set hard stop. Set TP. Place L2 limit at Entry − grid spacing. Place L3 at Entry − 2× spacing.</td>
+              <td>Position open. Standard management.</td>
+            </tr>
+            <tr>
+              <td class="bold-cell gold">L2</td>
+              <td>Price moves adverse by grid spacing</td>
+              <td>Calculate blended average. Adjust TP to blend ± 2.5R. Stop stays at original L1 hard stop — do NOT widen.</td>
+              <td>EV of combined position improves. Better average entry. Grid working correctly.</td>
+            </tr>
+            <tr>
+              <td class="bold-cell" style="color:var(--blue)">L3</td>
+              <td>Price moves 2× adverse</td>
+              <td>Recalculate 3-level blend. Update TP to blend ± 2.5R. Stop still at original L1 distance. Monitor closely.</td>
+              <td>Maximum position. Highest raw EV (+108p avg). Most variance. The trade must be allowed to work without interference.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="s4-3" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">4.3 Stop Management Rules</h3>
+      <div class="rules-list">
+        <div class="rule-item rule-critical">Never move a stop adversely. Once placed, the hard stop is fixed until the 2R partial fires.</div>
+        <div class="rule-item rule-positive">After 2R partial fires: move stop to entry price (breakeven). This is mandatory and immediate.</div>
+        <div class="rule-item">After partial, the stop may be trailed at discretion — but never moved adversely. Options: keep at breakeven (safest) or trail at 0.5× ATR(14) below current price.</div>
+        <div class="rule-item rule-critical">Do NOT tighten the stop before the 2R partial. Premature tightening is the most common cause of being stopped out on trades that would have won.</div>
+        <div class="rule-item">If price returns to entry after the 2R partial: the remaining 50% closes at breakeven. Net result = winner on the first half, breakeven on the second. Still a positive outcome.</div>
+      </div>
+
+      <div id="s4-4" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">4.4 Timeout Management</h3>
+      <div class="ops-table-wrap">
+        <table class="ops-table">
+          <thead><tr><th>Timeout Scenario</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>96 bars (48h) elapsed — position is profitable</td><td class="green">Close at market. Lock in the gain. Capital is needed for new signals.</td></tr>
+            <tr><td>96 bars elapsed — position near entry (within 0.5R)</td><td>Close at market. The signal has exhausted its momentum. Do not extend the hold.</td></tr>
+            <tr><td>96 bars elapsed — 2R partial already fired, stop at breakeven</td><td class="green">Hold. Effectively risk-free. Allow the remaining 50% to run to TP target.</td></tr>
+            <tr><td>96 bars elapsed — position significantly negative, approaching stop</td><td class="amber">Let the stop execute. Do not close manually above the stop just because the timeout clock arrived.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section id="s5" class="ops-section">
+      <div class="ops-section-label">Section 5</div>
+      <h2 class="ops-h2">Risk Controls</h2>
+      <p class="ops-p">These limits are hard constraints. They override any signal quality assessment, grade, or market opinion. The asymmetry of drawdown recovery (a 20% loss requires a 25% gain to recover) demands systematic protection.</p>
+
+      <div id="s5-1" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">5.1 Per-Trade Risk Limits</h3>
+      <div class="ops-table-wrap">
+        <table class="ops-table">
+          <thead><tr><th>Rule</th><th>Limit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Maximum risk per trade</td><td class="red bold">2% of account equity</td><td>Calculated: (Entry − Stop) × Lot Size × Pip Value ÷ Account Equity. Adjust lot size to stay within this regardless of grade.</td></tr>
+            <tr><td class="bold-cell">Grade 5 premium</td><td class="gold bold">125% lot (≤2% risk)</td><td>May go to 1.25% per trade at Grade 5. Still capped at absolute 2%.</td></tr>
+            <tr><td class="bold-cell">Grade 2 ceiling</td><td class="amber bold">50% lot (≤1% risk)</td><td>Never exceed 50% of standard at Grade 2. Near-breakeven EV does not justify full risk.</td></tr>
+            <tr><td class="bold-cell">Grade 1 ceiling</td><td class="amber bold">25% lot (≤0.5% risk)</td><td>Hard ceiling. Grade 1 is capital-efficient deployment only.</td></tr>
+            <tr><td class="bold-cell">Max concurrent positions</td><td class="red bold">4 trades</td><td>Prevents over-concentration and correlated JPY exposure. If at 4 open positions, no new entries until one closes.</td></tr>
+            <tr><td class="bold-cell">GBP/JPY Short limit</td><td class="amber bold">1 position max, Grade 3+ after penalty</td><td>Negative EV (−4.2p). If taken, must be the only GBP/JPY position open. Never alongside a GBP/JPY Long.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="s5-2" class="ops-sub-anchor"></div>
+      <h3 class="ops-h3">5.2 Account Drawdown Protocols</h3>
+      <div class="drawdown-levels">
+        <div class="dd-level dd-caution">
+          <div class="dd-pct">5%</div>
+          <div class="dd-body">
+            <div class="dd-label">Caution</div>
+            <div class="dd-desc">Review all active signals. Ensure all stops are mechanically placed. Look for any Grade 2/1 signals that should have been passed. Continue normal sizing for Grade 4+ signals.</div>
+          </div>
+        </div>
+        <div class="dd-level dd-reduce">
+          <div class="dd-pct">10%</div>
+          <div class="dd-body">
+            <div class="dd-label">Reduce</div>
+            <div class="dd-desc">Move to 75% of standard lot size for all new Grade 3 signals. Maintain full size for Grade 4–5 only. Review open positions for stop tightening candidates.</div>
+          </div>
+        </div>
+        <div class="dd-level dd-pause">
+          <div class="dd-pct">15%</div>
+          <div class="dd-body">
+            <div class="dd-label">Pause Grade 3–</div>
+            <div class="dd-desc">Stop opening Grade 3 or below signals entirely. Grade 4–5 at 50% size only. Close any Grade 2/1 signals that remain open. Full signal quality audit.</div>
+          </div>
+        </div>
+        <div class="dd-level dd-stop">
+          <div class="dd-pct">20%</div>
+          <div class="dd-body">
+            <div class="dd-label">Full Review</div>
+            <div class="dd-desc">Close all positions. Halt new trades. Review every recent signal against checklist for protocol violations. Verify drawdown is within historical parameters (W4 max DD: −255p, W2: −912p, W3: −660p).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section id="s6" class="ops-section">
+      <div class="ops-section-label">Section 6</div>
+      <h2 class="ops-h2">Performance Tracking Framework</h2>
+      <p class="ops-p">Systematic tracking enables continuous improvement. The three most important metrics: grade distribution (are you taking the right signals?), signal capture rate (are you missing high-grade setups?), and 2R partial execution rate (the non-negotiable that directly drives performance).</p>
+
+      <h3 class="ops-h3">Monthly KPIs</h3>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-name">Grade Distribution</div>
+          <div class="kpi-target">≥60% Grade 3+</div>
+          <div class="kpi-calc">Grade 3–5 signals ÷ total signals taken</div>
+          <div class="kpi-action">If Grade 2/1 >40%: you are over-trading or scanning at sub-optimal windows.</div>
+        </div>
+        <div class="kpi-card kpi-critical">
+          <div class="kpi-name">2R Partial Execution</div>
+          <div class="kpi-target target-red">100%</div>
+          <div class="kpi-calc">Partials executed ÷ trades reaching 2R level</div>
+          <div class="kpi-action">Any value below 100% is an operational failure. Identify the gap immediately.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-name">Grade 4–5 Capture Rate</div>
+          <div class="kpi-target">≥90%</div>
+          <div class="kpi-calc">Grade 4–5 signals taken ÷ Grade 4–5 signals identified</div>
+          <div class="kpi-action">Missing Grade 5 signals is the single most expensive operational error.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-name">Actual WR vs Benchmark</div>
+          <div class="kpi-target">Within 10pp</div>
+          <div class="kpi-calc">Your WR per grade vs: G5≥90%, G4=88-96%, G3=70-87%</div>
+          <div class="kpi-action">Systematic underperformance over 20+ trades indicates entry quality issues.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-name">Primary Window Capture</div>
+          <div class="kpi-target">≥70%</div>
+          <div class="kpi-calc">Grade 4+ trades from 07–09 or 12–16 UTC ÷ all Grade 4+ trades</div>
+          <div class="kpi-action">If below 70%, shift scanning focus to the primary windows.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-name">Avg EV vs Benchmark</div>
+          <div class="kpi-target">G5: +145p+, G4: +90p+</div>
+          <div class="kpi-calc">Mean pips per trade per grade vs EV benchmark</div>
+          <div class="kpi-action">Significant shortfall suggests early exit patterns or missed partials.</div>
+        </div>
+      </div>
+
+      <h3 class="ops-h3" style="margin-top:2rem">Post-Trade Review Checklist</h3>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">✓</span><div>Was the grade calculated correctly? Verify all 5 dimension scores against actual entry conditions.</div></div>
+        <div class="check-item"><span class="check-icon">✓</span><div>Was the session gate satisfied at entry?</div></div>
+        <div class="check-item"><span class="check-icon">✓</span><div>Were all 6 entry conditions met at the moment of entry (not in hindsight)?</div></div>
+        <div class="check-item check-critical"><span class="check-icon">⚡</span><div>Was the 2R partial executed if price reached the 2R level?</div></div>
+        <div class="check-item"><span class="check-icon">✓</span><div>Was the stop placed immediately after fill at the correct mechanical distance?</div></div>
+        <div class="check-item"><span class="check-icon">✓</span><div>Was the TP set as a limit order at entry?</div></div>
+        <div class="check-item check-warn"><span class="check-icon">⚠</span><div>If the trade was a loss: which condition(s) were marginal at entry? Document in signal log.</div></div>
+        <div class="check-item check-warn"><span class="check-icon">⚠</span><div>If Grade 2 or 1 was taken and lost: was the signal worth taking given available alternatives?</div></div>
+      </div>
+    </section>
+
+    <div class="ops-footer-note">
+      WALTER 2.0 · Operational Guide · March 2026 · 976 backtested trades · M30 OHLCV data 2022–2026<br>
+      <a href="index.html" style="color:var(--gold-lt)">← Back to Main Dashboard</a>
+    </div>
+
+  </main>
+</div>
+</div>
+
+<script>
+// Nav scroll + mobile toggle
+document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80);
+  // Sidebar active
+  const secs=['s1','s2','s3','s4','s5','s6'];
+  let current='';
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-100)current=id;});
+  document.querySelectorAll('.snav-a').forEach(a=>{a.classList.toggle('active',a.dataset.sec===current);});
+});
+</script>
+</body>
+</html>
