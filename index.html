@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walter 2.0 — FX RSI Exhaustion Flip</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <svg class="brand-logo" viewBox="0 0 48 40" width="36" height="30">
+        <polyline points="2,4 14,36 24,14 34,36 46,4" fill="none" stroke="#C8962A" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">Walter <span class="brand-ver">2.0</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#signal" class="nav-a">Signal</a></li>
+      <li><a href="#variants" class="nav-a">Variants</a></li>
+      <li><a href="#performance" class="nav-a">Performance</a></li>
+      <li><a href="#grading" class="nav-a">Grading</a></li>
+      <li><a href="#schedule" class="nav-a">Schedule</a></li>
+      <li><a href="#log" class="nav-a">Signal Log</a></li>
+      <li><a href="#prompts" class="nav-a">Prompts</a></li>
+      <li><a href="ops.html" class="nav-a">Ops Guide</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="section hero-section">
+  <div class="hero-grid-bg"></div>
+  <div class="container hero-inner">
+    <div class="hero-badge">FX Strategy · 2022–2026 · 976 Trades</div>
+    <h1 class="hero-title">RSI Exhaustion<br><span class="gold">Flip Strategy</span></h1>
+    <p class="hero-sub">Four production variants across eight currency pairs. When counter-trend momentum exhausts itself, the dominant trend resumes — and the signal fires.</p>
+    <div class="hero-stats">
+      <div class="stat-block">
+        <div class="stat-num" data-target="88.9" data-suffix="%" data-dec="1">0%</div>
+        <div class="stat-label">W4 Trinity Win Rate</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-target="37782" data-suffix="p" data-dec="0">0p</div>
+        <div class="stat-label">W2 Shogun Net Pips</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-target="13.13" data-suffix="" data-dec="2">0</div>
+        <div class="stat-label">W4 Profit Factor</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-target="976" data-suffix="" data-dec="0">0</div>
+        <div class="stat-label">Backtested Trades</div>
+      </div>
+    </div>
+    <div class="hero-variants">
+      <span class="vbadge vbadge-1">W1 Cascade  72%</span>
+      <span class="vbadge vbadge-2">W2 Shogun  84.1%</span>
+      <span class="vbadge vbadge-3">W3 London  79.3%</span>
+      <span class="vbadge vbadge-4">W4 Trinity  88.9%</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNAL -->
+<section id="signal" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">The Edge</div>
+      <h2 class="section-title">RSI Exhaustion Flip</h2>
+      <p class="section-sub">Six conditions must align simultaneously. All six. No exceptions.</p>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-conditions">
+        <div class="cond-table">
+          <div class="cond-row cond-header">
+            <span>Condition</span><span>Short Entry</span><span>Long Entry</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-name"><span class="cond-num">1</span>RSI Spike</span>
+            <span>RSI(14) M30 ≥58 in last 8 bars</span>
+            <span>RSI(14) M30 ≤42 in last 8 bars</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-name"><span class="cond-num">2</span>RSI Flip</span>
+            <span>Closes below 58 on bearish bar</span>
+            <span>Closes above 42 on bullish bar</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-name"><span class="cond-num">3</span>H4 Trend</span>
+            <span>Price below H4 50-EMA</span>
+            <span>Price above H4 50-EMA</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-name"><span class="cond-num">4</span>Weekly Bias</span>
+            <span>Close &lt; close 4 weeks ago</span>
+            <span>Close &gt; close 4 weeks ago</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-name"><span class="cond-num">5</span>Fibonacci</span>
+            <span colspan="2">Price inside 38.2–61.8% retracement of last H4 swing</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-name"><span class="cond-num">6</span>EMA Prox.</span>
+            <span colspan="2">Within 22 pips of M30 50-EMA · H4 ADX ≥ 20</span>
+          </div>
+        </div>
+      </div>
+      <div class="signal-grid-card">
+        <h3 class="card-title">The 3-Tier Grid</h3>
+        <p class="card-sub">Adversity improves the average entry price. Grid L3 has the highest raw EV (+108 pips) in the dataset.</p>
+        <div class="grid-levels">
+          <div class="grid-level gl1">
+            <div class="gl-badge">L1</div>
+            <div class="gl-info">
+              <div class="gl-name">Initial Entry</div>
+              <div class="gl-desc">1× lot at RSI flip bar close. Stop placed immediately.</div>
+              <div class="gl-stat">EV <span class="gold">+33.8p</span> · Kelly <span class="gold">92.5%</span></div>
+            </div>
+          </div>
+          <div class="grid-level gl2">
+            <div class="gl-badge">L2</div>
+            <div class="gl-info">
+              <div class="gl-name">Adverse Add</div>
+              <div class="gl-desc">2× lot at entry − grid spacing. Improves blend price.</div>
+              <div class="gl-stat">EV <span class="gold">+91.5p</span> · Kelly <span class="gold">76.9%</span> <span class="best-tag">Best EV+Consistency</span></div>
+            </div>
+          </div>
+          <div class="grid-level gl3">
+            <div class="gl-badge">L3</div>
+            <div class="gl-info">
+              <div class="gl-name">Deep Add</div>
+              <div class="gl-desc">3× lot at entry − 2× spacing. Maximum position.</div>
+              <div class="gl-stat">EV <span class="gold">+108.2p</span> · Kelly <span class="gold">42.8%</span> <span class="best-tag">Highest Raw EV</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-box alert-neg">
+          <span class="alert-icon">⚠</span>
+          <span><strong>GBP/JPY Short: Negative EV (−4.2 pips)</strong> — 69% win rate but avg loss 256p vs avg win 108p. Assign −1 scoring penalty. Do not take Grade 1 or below.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VARIANTS -->
+<section id="variants" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Four Variants</div>
+      <h2 class="section-title">One Signal, Four Applications</h2>
+    </div>
+    <div class="variants-grid">
+
+      <div class="variant-card vc-1">
+        <div class="vc-top">
+          <span class="vc-code">W1</span>
+          <span class="vc-name">Cascade</span>
+          <span class="vc-tag">EUR/USD · Bidirectional</span>
+        </div>
+        <div class="vc-stats">
+          <div class="vc-stat"><span class="vc-val">72.0%</span><span class="vc-key">Win Rate</span></div>
+          <div class="vc-stat"><span class="vc-val">+603p</span><span class="vc-key">Net Pips</span></div>
+          <div class="vc-stat"><span class="vc-val">2.61</span><span class="vc-key">Prof. Factor</span></div>
+          <div class="vc-stat"><span class="vc-val">75</span><span class="vc-key">Trades</span></div>
+        </div>
+        <div class="vc-params">
+          <div class="param-row"><span>Pairs</span><span>EUR/USD</span></div>
+          <div class="param-row"><span>Direction</span><span>Long &amp; Short</span></div>
+          <div class="param-row"><span>Grid Spacing</span><span>25 pips</span></div>
+          <div class="param-row"><span>Hard Stop</span><span>80 pips from L1</span></div>
+          <div class="param-row"><span>Session</span><span>06:00–21:00 UTC</span></div>
+          <div class="param-row"><span>Max Hold</span><span>48 hours</span></div>
+        </div>
+      </div>
+
+      <div class="variant-card vc-2">
+        <div class="vc-top">
+          <span class="vc-code">W2</span>
+          <span class="vc-name">Shogun</span>
+          <span class="vc-tag">JPY Crosses · Bidirectional</span>
+        </div>
+        <div class="vc-stats">
+          <div class="vc-stat"><span class="vc-val">84.1%</span><span class="vc-key">Win Rate</span></div>
+          <div class="vc-stat"><span class="vc-val">+37,782p</span><span class="vc-key">Net Pips</span></div>
+          <div class="vc-stat"><span class="vc-val">4.12</span><span class="vc-key">Prof. Factor</span></div>
+          <div class="vc-stat"><span class="vc-val">435</span><span class="vc-key">Trades</span></div>
+        </div>
+        <div class="vc-params">
+          <div class="param-row"><span>Pairs</span><span>EUR/JPY, GBP/JPY, USD/JPY</span></div>
+          <div class="param-row"><span>RSI Threshold</span><span>55 / 45 (shallow)</span></div>
+          <div class="param-row"><span>Grid Spacing</span><span>30 pips</span></div>
+          <div class="param-row"><span>Hard Stop</span><span>90 pips from L1</span></div>
+          <div class="param-row"><span>Session</span><span>06:00–21:00 UTC</span></div>
+          <div class="param-row highlight-row"><span>GBP/JPY Long</span><span class="gold">98.8% WR · 86 trades</span></div>
+        </div>
+      </div>
+
+      <div class="variant-card vc-3">
+        <div class="vc-top">
+          <span class="vc-code">W3</span>
+          <span class="vc-name">London</span>
+          <span class="vc-tag">5 Pairs · Session-Filtered</span>
+        </div>
+        <div class="vc-stats">
+          <div class="vc-stat"><span class="vc-val">79.3%</span><span class="vc-key">Win Rate</span></div>
+          <div class="vc-stat"><span class="vc-val">+15,665p</span><span class="vc-key">Net Pips</span></div>
+          <div class="vc-stat"><span class="vc-val">3.15</span><span class="vc-key">Prof. Factor</span></div>
+          <div class="vc-stat"><span class="vc-val">304</span><span class="vc-key">Trades</span></div>
+        </div>
+        <div class="vc-params">
+          <div class="param-row"><span>Pairs</span><span>EUR/USD, GBP/USD, EUR/JPY, GBP/JPY, USD/JPY</span></div>
+          <div class="param-row"><span>Session Gate</span><span class="gold">07:00–16:00 UTC ONLY</span></div>
+          <div class="param-row"><span>Grid Spacing</span><span>25 pips</span></div>
+          <div class="param-row"><span>Hard Stop</span><span>70 pips from L1</span></div>
+          <div class="param-row"><span>Max Hold</span><span>36 hours</span></div>
+          <div class="param-row highlight-row"><span>09:00 UTC</span><span class="gold">97.3% WR · EV +101p</span></div>
+        </div>
+      </div>
+
+      <div class="variant-card vc-4">
+        <div class="vc-top">
+          <span class="vc-code">W4</span>
+          <span class="vc-name">Trinity</span>
+          <span class="vc-tag">Long Only · Highest Grade</span>
+        </div>
+        <div class="vc-stats">
+          <div class="vc-stat"><span class="vc-val">88.9%</span><span class="vc-key">Win Rate</span></div>
+          <div class="vc-stat"><span class="vc-val">+17,012p</span><span class="vc-key">Net Pips</span></div>
+          <div class="vc-stat"><span class="vc-val">13.13</span><span class="vc-key">Prof. Factor</span></div>
+          <div class="vc-stat"><span class="vc-val">162</span><span class="vc-key">Trades</span></div>
+        </div>
+        <div class="vc-params">
+          <div class="param-row"><span>Pairs</span><span>EUR/JPY, GBP/JPY, USD/JPY, AUD/USD, GBP/USD</span></div>
+          <div class="param-row"><span>Direction</span><span class="gold">LONG ONLY</span></div>
+          <div class="param-row"><span>Grid Spacing</span><span>28 pips</span></div>
+          <div class="param-row"><span>Hard Stop</span><span>85 pips from L1</span></div>
+          <div class="param-row highlight-row"><span>GBP/JPY Long</span><span class="gold">97.3% WR · PF 113.78</span></div>
+          <div class="param-row highlight-row"><span>Max DD</span><span class="green">−255 pips only</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section id="performance" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Results</div>
+      <h2 class="section-title">2022–2026 Performance</h2>
+    </div>
+    <div class="perf-tabs">
+      <button class="tab-btn active" data-tab="equity">Equity Curves</button>
+      <button class="tab-btn" data-tab="pairs">Pair Breakdown</button>
+      <button class="tab-btn" data-tab="monthly">Monthly EV</button>
+    </div>
+    <div class="tab-panel active" id="tab-equity">
+      <div class="chart-wrap">
+        <canvas id="equityChart"></canvas>
+      </div>
+      <p class="chart-note">Cumulative lot-weighted pips · All four variants · 2022–2026</p>
+    </div>
+    <div class="tab-panel" id="tab-pairs">
+      <div class="pair-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Pair &amp; Direction</th><th>Trades</th><th>Win Rate</th><th>Avg Win</th><th>Avg Loss</th><th>EV / Trade</th><th>Kelly</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row-highlight"><td>GBP/JPY Long</td><td>155</td><td class="green bold">98.1%</td><td class="green">+175.8p</td><td>−32.5p</td><td class="gold bold">+171.8p</td><td class="green">97.7%</td></tr>
+            <tr><td>EUR/JPY Long</td><td>128</td><td class="green bold">89.8%</td><td class="green">+149.7p</td><td>−75.4p</td><td class="gold">+126.8p</td><td class="green">84.7%</td></tr>
+            <tr class="row-highlight"><td>GBP/USD Long</td><td>64</td><td class="green bold">90.6%</td><td class="green">+122.2p</td><td>−38.9p</td><td class="gold">+107.0p</td><td class="green">87.6%</td></tr>
+            <tr><td>USD/JPY Long</td><td>126</td><td class="green">82.5%</td><td class="green">+110.9p</td><td>−63.3p</td><td class="gold">+80.5p</td><td class="green">72.6%</td></tr>
+            <tr class="row-highlight"><td>EUR/JPY Short</td><td>108</td><td class="green">84.3%</td><td class="green">+97.8p</td><td>−215.3p</td><td class="amber">+48.5p</td><td>49.6%</td></tr>
+            <tr><td>AUD/USD Long</td><td>30</td><td class="green">90.0%</td><td class="green">+63.1p</td><td>−133.2p</td><td class="amber">+43.5p</td><td>68.9%</td></tr>
+            <tr class="row-highlight"><td>USD/JPY Short</td><td>88</td><td>73.9%</td><td>+102.5p</td><td>−143.3p</td><td class="amber">+38.3p</td><td>37.3%</td></tr>
+            <tr><td>EUR/USD Long</td><td>61</td><td>77.0%</td><td>+17.0p</td><td>−10.3p</td><td>+10.7p</td><td>63.2%</td></tr>
+            <tr class="row-highlight"><td>EUR/USD Short</td><td>67</td><td>62.7%</td><td>+17.2p</td><td>−18.1p</td><td>+4.0p</td><td>23.4%</td></tr>
+            <tr class="negative"><td>GBP/JPY Short ⚠</td><td>107</td><td>69.2%</td><td>+108.1p</td><td>−256.1p</td><td class="red bold">−4.2p</td><td class="red">NEGATIVE</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-monthly">
+      <div class="heatmap-wrap" id="monthlyHeatmap"></div>
+      <p class="chart-note">EV per trade by month · All variants combined · Darker gold = higher expected value</p>
+    </div>
+  </div>
+</section>
+
+<!-- GRADING -->
+<section id="grading" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Signal Quality</div>
+      <h2 class="section-title">Grade Calculator</h2>
+      <p class="section-sub">EV-calibrated. Five dimensions. Scores 97–100% WR at Grade 5 (94 trades). GBP/JPY Short carries a −1 penalty for negative EV.</p>
+    </div>
+    <div class="grade-layout">
+      <div class="grade-inputs">
+        <div class="input-group">
+          <label>Variant</label>
+          <select id="gc-variant" class="grade-select" onchange="calcGrade()">
+            <option value="W4">W4 Trinity</option>
+            <option value="W2">W2 Shogun</option>
+            <option value="W3">W3 London</option>
+            <option value="W1">W1 Cascade</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Pair</label>
+          <select id="gc-pair" class="grade-select" onchange="calcGrade()">
+            <option value="GBPJPY">GBP/JPY</option>
+            <option value="EURJPY">EUR/JPY</option>
+            <option value="GBPUSD">GBP/USD</option>
+            <option value="USDJPY">USD/JPY</option>
+            <option value="AUDUSD">AUD/USD</option>
+            <option value="EURUSD">EUR/USD</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Direction</label>
+          <div class="dir-toggle">
+            <button class="dir-btn active" id="btn-long" onclick="setDir('L')">LONG</button>
+            <button class="dir-btn" id="btn-short" onclick="setDir('S')">SHORT</button>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Grid Level</label>
+          <select id="gc-grid" class="grade-select" onchange="calcGrade()">
+            <option value="2">L2 — Adverse Add (Best EV×Kelly)</option>
+            <option value="3">L3 — Deep Add (Highest Raw EV)</option>
+            <option value="1">L1 — Clean Entry (Highest Certainty)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Entry Hour (UTC)</label>
+          <select id="gc-hour" class="grade-select" onchange="calcGrade()">
+            <option value="9">09:00 — EV +101p</option>
+            <option value="20">20:00 — EV +97p</option>
+            <option value="8">08:00 — EV +91p</option>
+            <option value="15">15:00 — EV +90p</option>
+            <option value="18">18:00 — EV +87p</option>
+            <option value="16">16:00 — EV +84p</option>
+            <option value="6">06:00 — EV +81p</option>
+            <option value="12">12:00 — EV +77p</option>
+            <option value="13">13:00 — EV +63p</option>
+            <option value="7">07:00</option>
+            <option value="10">10:00</option>
+            <option value="17">17:00</option>
+            <option value="11">11:00</option>
+            <option value="14">14:00</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Month</label>
+          <select id="gc-month" class="grade-select" onchange="calcGrade()">
+            <option value="1">January — EV +119p ★</option>
+            <option value="10">October — EV +93p ★</option>
+            <option value="6">June — EV +84p</option>
+            <option value="8">August — EV +82p</option>
+            <option value="7">July — EV +74p</option>
+            <option value="9">September — EV +70p</option>
+            <option value="12">December — EV +69p</option>
+            <option value="2">February — EV +66p</option>
+            <option value="11">November — EV +64p</option>
+            <option value="3">March — EV +61p</option>
+            <option value="5">May — EV +57p</option>
+            <option value="4">April — EV +25p (weakest)</option>
+          </select>
+        </div>
+        <div class="grade-dim-breakdown" id="dimBreakdown"></div>
+      </div>
+      <div class="grade-output">
+        <div class="grade-display" id="gradeDisplay">
+          <div class="grade-stars" id="gradeStars">★★★★★</div>
+          <div class="grade-num" id="gradeNum">5</div>
+          <div class="grade-label" id="gradeLabel">Maximum Conviction</div>
+          <div class="grade-score-line">Score: <span id="gradeScore">—</span> / 21</div>
+          <div class="grade-wr" id="gradeWR">WR: —</div>
+          <div class="grade-ev" id="gradeEV">EV: —</div>
+        </div>
+        <div class="radar-wrap">
+          <canvas id="radarChart"></canvas>
+        </div>
+        <div class="grade-ref">
+          <div class="grade-ref-row g5"><span>★★★★★ 5</span><span>Score 17–21</span><span>97–100% WR</span></div>
+          <div class="grade-ref-row g4"><span>★★★★☆ 4</span><span>Score 13–16</span><span>88–96% WR</span></div>
+          <div class="grade-ref-row g3"><span>★★★☆☆ 3</span><span>Score 8–12</span><span>70–87% WR</span></div>
+          <div class="grade-ref-row g2"><span>★★☆☆☆ 2</span><span>Score 3–7</span><span>55–69% WR</span></div>
+          <div class="grade-ref-row g1"><span>★☆☆☆☆ 1</span><span>Score 0–2</span><span>45–54% WR</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">When to Trade</div>
+      <h2 class="section-title">Scanning Schedule</h2>
+    </div>
+    <div class="schedule-grid">
+      <div>
+        <h3 class="sub-title">Daily Windows — Ranked by EV</h3>
+        <div class="window-list">
+          <div class="window-item w-crit">
+            <div class="w-time">06:45 UTC</div>
+            <div class="w-body">
+              <div class="w-title">Pre-London Prep</div>
+              <div class="w-desc">Load all 5 W3 London pairs. Check H4 trend, weekly bias, ADX. Pre-calculate Fibonacci pockets.</div>
+            </div>
+          </div>
+          <div class="window-item w-crit">
+            <div class="w-time">07:00–09:00</div>
+            <div class="w-body">
+              <div class="w-title">Primary Window ★</div>
+              <div class="w-desc">W3 09:00 EV=+101p, WR=88% · W2 07:00 EV=+91p, WR=97% · Do not miss.</div>
+            </div>
+          </div>
+          <div class="window-item w-high">
+            <div class="w-time">12:00–14:00</div>
+            <div class="w-body">
+              <div class="w-title">Second Window</div>
+              <div class="w-desc">W4 12:00 = 100% WR · W2 13:00 EV=+121p, WR=94%</div>
+            </div>
+          </div>
+          <div class="window-item w-high">
+            <div class="w-time">14:00–16:00</div>
+            <div class="w-body">
+              <div class="w-title">NY Overlap</div>
+              <div class="w-desc">W4 15:00+16:00 = 100% WR each. W3 London final window.</div>
+            </div>
+          </div>
+          <div class="window-item w-med">
+            <div class="w-time">17:00–19:00</div>
+            <div class="w-body">
+              <div class="w-title">NY Core</div>
+              <div class="w-desc">W2 18:00 EV=+87p, WR=91% · W1/W2 only. W3 gate CLOSED.</div>
+            </div>
+          </div>
+          <div class="window-item w-low">
+            <div class="w-time">22:00–06:45</div>
+            <div class="w-body">
+              <div class="w-title">Monitor Only</div>
+              <div class="w-desc">Asian session. No new entries. Monitor stops and TP levels.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub-title">Day-of-Week Performance</h3>
+        <div class="dow-table">
+          <div class="dow-row dow-header">
+            <span>Day</span><span>W2 WR</span><span>W3 WR</span><span>W4 WR</span><span>Action</span>
+          </div>
+          <div class="dow-row dow-best">
+            <span class="dow-day">Mon</span><span>87.4%</span><span>85.9%</span><span>90.9%</span><span class="green">Full size all</span>
+          </div>
+          <div class="dow-row">
+            <span class="dow-day">Tue</span><span>81.1%</span><span>81.0%</span><span>86.2%</span><span>Full size</span>
+          </div>
+          <div class="dow-row">
+            <span class="dow-day">Wed</span><span>82.1%</span><span>78.1%</span><span>87.5%</span><span>Full size</span>
+          </div>
+          <div class="dow-row">
+            <span class="dow-day">Thu</span><span>86.5%</span><span>79.2%</span><span>87.5%</span><span>Full size</span>
+          </div>
+          <div class="dow-row dow-warn">
+            <span class="dow-day">Fri</span><span>83.1%</span><span class="amber">68.6%</span><span class="green">92.0%</span><span class="amber">W3: 75% size</span>
+          </div>
+        </div>
+        <h3 class="sub-title" style="margin-top:2rem">Monthly Seasonal Sizing</h3>
+        <div class="seasonal-table">
+          <div class="seas-row seas-header"><span>Month</span><span>W2 EV</span><span>W4 EV</span><span>Size</span></div>
+          <div class="seas-row seas-best"><span>January</span><span>+119p</span><span>+115p</span><span class="gold">120%</span></div>
+          <div class="seas-row seas-best"><span>October</span><span>+93p</span><span>+114p</span><span class="gold">115%</span></div>
+          <div class="seas-row seas-good"><span>June–Aug</span><span>+74–84p</span><span>+91–131p</span><span>110%</span></div>
+          <div class="seas-row"><span>Sep, Dec, Feb</span><span>+64–70p</span><span>+84–123p</span><span>100%</span></div>
+          <div class="seas-row seas-weak"><span>March, May</span><span>+57–61p</span><span>+61–179p</span><span>100%</span></div>
+          <div class="seas-row seas-worst"><span>April</span><span>+25p</span><span>+31p</span><span class="amber">75%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNAL LOG -->
+<section id="log" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Execution Tracking</div>
+      <h2 class="section-title">Signal Log</h2>
+      <p class="section-sub">Every signal from identification to final close. Saved in your browser. Export anytime.</p>
+    </div>
+    <div class="log-controls">
+      <button class="btn-primary" onclick="openSignalModal()">+ Add Signal</button>
+      <button class="btn-secondary" onclick="exportCSV()">↓ Export CSV</button>
+      <button class="btn-ghost" onclick="clearLog()">Clear All</button>
+      <span class="log-count" id="logCount">0 signals</span>
+    </div>
+    <div class="log-table-wrap">
+      <table class="log-table" id="logTable">
+        <thead>
+          <tr>
+            <th class="col-sticky">ID</th>
+            <th>Date/Time (UTC)</th>
+            <th>Variant</th>
+            <th>Pair</th>
+            <th>Dir</th>
+            <th>Grade</th>
+            <th>Entry</th>
+            <th>Stop</th>
+            <th>TP1 (2R)</th>
+            <th>TP2</th>
+            <th>R:R</th>
+            <th>Grid</th>
+            <th>Conditions Met</th>
+            <th>Action</th>
+            <th>Fill Price</th>
+            <th>Exit Date</th>
+            <th>Exit Price</th>
+            <th>Exit Reason</th>
+            <th>P&amp;L (pips)</th>
+            <th>Live Grade</th>
+            <th class="col-del">×</th>
+          </tr>
+        </thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+    <p class="log-note">Click any cell to edit. Data saved automatically in browser.</p>
+  </div>
+</section>
+
+<!-- SIGNAL MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="signalModal">
+  <div class="modal-header">
+    <h3>Add New Walter Signal</h3>
+    <button onclick="closeModal()" class="modal-close">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-grid">
+      <div class="mfield"><label>Signal Date &amp; Time (UTC)</label><input type="datetime-local" id="m-dt"></div>
+      <div class="mfield"><label>Variant</label>
+        <select id="m-variant">
+          <option>W1 Cascade</option><option>W2 Shogun</option><option>W3 London</option><option>W4 Trinity</option>
+        </select>
+      </div>
+      <div class="mfield"><label>Pair</label>
+        <select id="m-pair">
+          <option>GBP/JPY</option><option>EUR/JPY</option><option>GBP/USD</option><option>USD/JPY</option><option>AUD/USD</option><option>EUR/USD</option>
+        </select>
+      </div>
+      <div class="mfield"><label>Direction</label>
+        <select id="m-dir"><option value="LONG">LONG</option><option value="SHORT">SHORT</option></select>
+      </div>
+      <div class="mfield"><label>Grade</label>
+        <select id="m-grade">
+          <option>★★★★★ 5</option><option>★★★★☆ 4</option><option>★★★☆☆ 3</option><option>★★☆☆☆ 2</option><option>★☆☆☆☆ 1</option>
+        </select>
+      </div>
+      <div class="mfield"><label>Grid Level</label>
+        <select id="m-grid"><option>L1</option><option>L2</option><option>L3</option></select>
+      </div>
+      <div class="mfield"><label>Entry Price</label><input type="number" id="m-entry" step="0.001" placeholder="e.g. 191.200"></div>
+      <div class="mfield"><label>Stop Price</label><input type="number" id="m-stop" step="0.001" placeholder="e.g. 190.350"></div>
+      <div class="mfield"><label>TP1 (2R level)</label><input type="number" id="m-tp1" step="0.001"></div>
+      <div class="mfield"><label>TP2 (Blend ± 2.5R)</label><input type="text" id="m-tp2" placeholder="e.g. 193.000"></div>
+      <div class="mfield"><label>R:R</label><input type="text" id="m-rr" placeholder="e.g. 3.5:1"></div>
+      <div class="mfield mfield-full"><label>Key Conditions Met</label><textarea id="m-cond" rows="2" placeholder="RSI dip 38→42 | GBP/JPY above H4 EMA | Jan entry (EV +119p)"></textarea></div>
+      <div class="mfield"><label>Action Taken</label>
+        <select id="m-action"><option>TAKEN</option><option>PASSED</option><option>WATCHING</option></select>
+      </div>
+      <div class="mfield"><label>Fill Price</label><input type="text" id="m-fill" placeholder="Actual fill"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-primary" onclick="saveSignal()">Add to Log</button>
+    <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- PROMPTS -->
+<section id="prompts" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">AI Integration</div>
+      <h2 class="section-title">Signal Prompts</h2>
+      <p class="section-sub">Paste into Claude (web search on), ChatGPT with browsing, or Perplexity Pro. Replace [DATE] and [TIME].</p>
+    </div>
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div>
+            <span class="prompt-label">W-1</span>
+            <h3 class="prompt-title">Daily Full Scan — All Variants</h3>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt('p1')">Copy</button>
+        </div>
+        <div class="prompt-body" id="p1">You are running the Walter 2.0 FX signal scan. Date: [DATE], Time: [TIME] UTC.
+
+Check these pairs: EUR/USD, GBP/USD, EUR/JPY, GBP/JPY, USD/JPY, AUD/USD.
+
+SHORT SIGNAL (all six required): RSI(14) M30 reached ≥58 in last 8 bars AND has now closed below 58 on a bearish bar | Price below H4 50-EMA | 4-week close bearish | Within 22 pips of M30 50-EMA | Price in 38.2–61.8% H4 Fibonacci retracement | H4 ADX ≥ 20
+
+LONG SIGNAL: mirror of all above (RSI dip ≤42, closes above 42 on bullish bar, price above H4 50-EMA, etc.)
+
+GRADE each valid signal — score these 5 dimensions:
+• Variant: W4 Trinity=4, W2 Shogun=3, W3 London=2 (only if time 07:00–16:00 UTC), W1 Cascade=1
+• Pair×Dir: GBPJPY-L=5, EURJPY-L/GBPUSD-L=4, USDJPY-L/AUDUSD-L=3, EURJPY-S/USDJPY-S=2, EURUSD-L/GBPUSD-S/EURUSD-S=1, GBPJPY-S=−1
+• Grid Level: L2=4, L3=3, L1=2
+• Hour: 08/09/15/18/20:00=4pts, 06/12/16:00=3pts, 07/10/13/17:00=2pts, others=1pt
+• Month: Jan/Oct=4, Jun/Jul/Aug=3, Sep/Dec/Feb/Nov=2, Mar/May/Apr=1
+
+Grade thresholds: 17+=★★★★★5, 13–16=★★★★4, 8–12=★★★3, 3–7=★★2. Return only Grade 3+.
+
+Return table: Pair | Direction | Variant | Grade (★ rating) | Entry Price | Stop | TP1 (L1 flat pips) | TP2 (blend±2.5R) | R:R | Key Conditions Met | Signal DateTime UTC. FLAG any Grade 5 as PRIORITY.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div>
+            <span class="prompt-label">W-2</span>
+            <h3 class="prompt-title">W4 Trinity Specialist — Grade 5 Detector</h3>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt('p2')">Copy</button>
+        </div>
+        <div class="prompt-body" id="p2">You are scanning for W4 Trinity signals — LONG ONLY. Date: [DATE], Time: [TIME] UTC.
+
+Check: EUR/JPY, GBP/JPY, USD/JPY, AUD/USD, GBP/USD.
+
+Entry requires ALL of: RSI(14) dipped to ≤40 in last 8 bars AND has now closed above 40 on a BULLISH bar | Price ABOVE H4 50-EMA | 4-week close bullish | Within 22 pips of M30 50-EMA | Price in 38.2–61.8% Fibonacci golden pocket of last H4 swing (bullish) | H4 ADX ≥ 20
+
+Grid parameters: spacing 28 pips, hard stop 85 pips below L1, TP-L1 +45 pips, TP-grid blend+2.5R.
+
+GRADE: W4=4pts always. Pair: GBPJPY=5, EURJPY/GBPUSD=4, USDJPY/AUDUSD=3. Grid: L2=4, L3=3, L1=2. Hour: 08/09/15/18/20:00=4, 06/12/16:00=3, others 1-2. Month: Jan/Oct=4, Jun/Jul/Aug=3, Sep/Dec/Feb/Nov=2, Mar/May/Apr=1. ONLY RETURN SIGNALS SCORING 13+.
+
+GRADE 5 ALERT: If current time is 08:00–16:00 UTC AND month is Jan/Jun/Jul/Aug/Oct AND pair is GBPJPY or EURJPY Long → flag as ★★★★★ GRADE 5 — MAXIMUM SIZE.
+
+Return: Pair | Grade (★) | Score breakdown | L1 Entry | L2 add (−28p) | L3 add (−56p) | Stop (−85p) | TP1 (+45p) | TP2 (blend+2.5R) | R:R | Conditions | Signal DateTime UTC</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div>
+            <span class="prompt-label">W-3</span>
+            <h3 class="prompt-title">W2 Shogun + W3 London Weekly Review</h3>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt('p3')">Copy</button>
+        </div>
+        <div class="prompt-body" id="p3">Weekly review for W2 Shogun (EUR/JPY, GBP/JPY, USD/JPY) and W3 London (EUR/USD, GBP/USD, EUR/JPY, GBP/JPY, USD/JPY). Date: [DATE].
+
+W2 Shogun — shallower RSI thresholds: SHORT=RSI≥55→closes below 55 on bearish bar. LONG=RSI≤45→closes above 45 on bullish bar. Grid 30 pips, stop 90 pips, TP-L1 45 pips.
+
+W3 London — standard thresholds (58/42 flip). ONLY valid 07:00–16:00 UTC. Grid 25 pips, stop 70 pips, TP-L1 38 pips.
+
+For each of the 5 pairs provide:
+(a) H4 trend: above or below H4 50-EMA
+(b) Weekly bias: 4-week close bullish or bearish
+(c) Current M30 RSI(14) value
+(d) Distance from M30 50-EMA in pips
+(e) Whether inside H4 Fibonacci golden pocket (38.2–61.8%)
+(f) H4 ADX current level
+
+Pre-signal watch: Flag any pair where RSI is within 5 points of the flip threshold — these need monitoring at next scan window.
+
+Return: Weekly summary table (5 pairs × 6 conditions) | Top 2 active setups with full entry parameters and Grade | Pre-signal watchlist</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg viewBox="0 0 48 40" width="28" height="23">
+        <polyline points="2,4 14,36 24,14 34,36 46,4" fill="none" stroke="#C8962A" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <span>Walter 2.0</span>
+    </div>
+    <p class="footer-note">976 backtested trades · M30 OHLCV data 2022–2026 · For research and educational purposes</p>
+    <p class="footer-note">Past performance does not guarantee future results. Trading FX involves substantial risk of loss.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
